@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  app manifest.
+  REQUIRED CONTENT:
+  - All permissions listed in README (camera, mic, foreground service types,
+    notifications, wake lock, bluetooth, SMS).
+  - MonitoringService declared with foregroundServiceType="camera|microphone".
+  - BootReceiver to restore armed state after reboot (only if previously armed).
+  - MainActivity as launcher.
+  HARD RULES:
+  - The persistent notification shows monitoring status only; never a live feed.
+  - Do not request a display wake lock anywhere.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".NightWatchApplication"
+        android:allowBackup="false"
+        android:label="NightWatch"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NightWatch">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:showWhenLocked="false"
+            android:turnScreenOn="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- TODO: verify foregroundServiceType matches declared permissions. -->
+        <service
+            android:name=".service.MonitoringService"
+            android:exported="false"
+            android:foregroundServiceType="camera|microphone" />
+
+        <!-- TODO: only re-arm if the user had monitoring armed before reboot. -->
+        <receiver
+            android:name=".service.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>

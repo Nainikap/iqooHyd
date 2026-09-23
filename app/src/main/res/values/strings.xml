@@ -1,0 +1,10 @@
+<resources>
+    <!-- User-facing strings. REQUIRED: app name, notification text, permission
+         rationale, tier labels. Never include alarming or diagnostic language. -->
+    <string name="app_name">NightWatch</string>
+    <string name="monitoring_notification_title">NightWatch monitoring</string>
+    <string name="monitoring_notification_text">Watching quietly. Screen stays off.</string>
+    <string name="tier_routine">Routine</string>
+    <string name="tier_urgent">Urgent</string>
+    <string name="tier_critical">Critical</string>
+</resources>

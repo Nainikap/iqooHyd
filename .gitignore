@@ -1,0 +1,40 @@
+# ---- Gradle ----
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---- Android Studio / IntelliJ ----
+.idea/
+*.iml
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# ---- Kotlin ----
+.kotlin/
+*.kotlin_module
+
+# ---- Logs ----
+*.log
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Secrets / signing ----
+*.jks
+*.keystore
+keystore.properties
+# Never commit API keys for relays, SMS gateways, or push services.
+secrets.properties
+
+# ---- NightWatch assets ----
+# Model binaries are large; decide between Git LFS or a download step.
+# If LFS is not used, keep these ignored and document the fetch command in BUILDERS_GUIDE.
+# app/src/main/assets/models/*.tflite
+# app/src/main/assets/models/*.onnx
+
+# ---- Test output ----
+/app/build/
+/contact/build/

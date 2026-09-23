@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Receiver manifest.
+  REQUIRED CONTENT:
+  - POST_NOTIFICATIONS + FOREGROUND_SERVICE (dataSync) if a persistent receive path is used.
+  - INTERNET if a relay/push path is used.
+  - AlertReceiver for incoming paired-device / relay messages.
+  - MainActivity as launcher.
+  HARD RULES:
+  - No CAMERA / RECORD_AUDIO permissions. The receiver never captures media.
+  - No location permission unless the caregiver wants to attach their own position
+    (default: do not request it).
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:name=".ContactApplication"
+        android:allowBackup="false"
+        android:label="NightWatch Contact"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- TODO: declare the correct exported/permission posture for the message source. -->
+        <receiver
+            android:name=".receiver.AlertReceiver"
+            android:exported="false" />
+
+    </application>
+</manifest>

@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Dark, low-light theme. REQUIRED: no Material You dynamic light colors that
+         could brighten the display at night. Keep the palette dark by default. -->
+    <style name="Theme.NightWatch" parent="android:Theme.Material.NoActionBar">
+        <!-- TODO: define a dark palette; avoid bright accents. -->
+    </style>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <!-- Receiver strings. REQUIRED: app name + tier labels + notification channel names.
+         Keep language calm and factual. -->
+    <string name="app_name">NightWatch Contact</string>
+    <string name="tier_routine">Routine</string>
+    <string name="tier_urgent">Urgent</string>
+    <string name="tier_critical">Critical</string>
+</resources>
